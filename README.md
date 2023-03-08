@@ -1,15 +1,13 @@
-# COBOL Source editing for Visual Studio Code
+# Raincode COBOL Source editing for Visual Studio Code
 
-[![Version](https://vsmarketplacebadges.dev/version/bitlang.cobol.png)](https://marketplace.visualstudio.com/items?itemName=bitlang.cobol) [![Installs](https://vsmarketplacebadges.dev/installs-short/bitlang.cobol.png)](https://marketplace.visualstudio.com/items?itemName=bitlang.cobol) [![Downloads](https://vsmarketplacebadges.dev/downloads-short/bitlang.cobol.png)](https://marketplace.visualstudio.com/items?itemName=bitlang.cobol) [![Rating](https://vsmarketplacebadges.dev/rating-star/bitlang.cobol.png)](https://marketplace.visualstudio.com/items?itemName=bitlang.cobol)
+[![Version](https://vsmarketplacebadges.dev/version/raincode.cobol.png)](https://marketplace.visualstudio.com/items?itemName=raincode.cobol) [![Installs](https://vsmarketplacebadges.dev/installs-short/raincode.cobol.png)](https://marketplace.visualstudio.com/items?itemName=raincode.cobol) [![Downloads](https://vsmarketplacebadges.dev/downloads-short/raincode.cobol.png)](https://marketplace.visualstudio.com/items?itemName=raincode.cobol) [![Rating](https://vsmarketplacebadges.dev/rating-star/raincode.cobol.png)](https://marketplace.visualstudio.com/items?itemName=raincode.cobol)
 
-This unofficial extension provides syntax highlighting for `Micro Focus` based COBOL languages, as well as syntax highlighting for other related languages/file formats such JCL, PL/I and Micro Focus directive files and [Micro Focus Unit Test Reports](https://www.microfocus.com/documentation/visual-cobol/vc70/VS2017/index.html?t=GUID-F0EE10E3-2C57-4322-BC82-4AD5A5EDA0CB.html).
+This unofficial extension provides syntax highlighting for `Raincode Stack` based COBOL languages, as well as syntax highlighting for other related languages/file formats such JCL, PL/I.
 
 Some of the features this extension provides are:
 
-- Colourisation and problem matchers for the following Micro Focus COBOL dialects:
-  - [Net Express](https://www.microfocus.com/en-us/products/net-express-server-express/overview) to the latest [Visual COBOL](https://www.microfocus.com/en-us/products/visual-cobol/)
-  - [ACUCOBOL-GT](https://www.microfocus.com/en-us/products/acucobol-gt/overview)
-  - [COBOL-IT](https://www.cobol-it.com/)
+- Colourisation and problem matchers for the following Raincode COBOL dialects:
+  - [Raincode Stack and JCL](https://www.raincode.com/products/) 
 - COBOL tab key support (configurable)
 - COBOL source navigation support
   - Shortcuts/Commands for navigation to divisions
@@ -38,7 +36,7 @@ Some of the features this extension provides are:
 - Documentation for using development containers with Visual COBOL
 - and more..
 
-While also being able to use it with the official `Micro Focus COBOL extension` (for debugging for example).
+While also being able to use it with the official Raincode Cobol debugger (requiring instalaion of the extention (for debugging for example).
 
 ## Examples of features provided
 
@@ -114,11 +112,11 @@ Only active when `coboleditor.xedit_keymap` is set to true.
 
 ## New File
 
-New file creation support is provided for COBOL and ACUCOBOL programs with addditional support for Micro Focus Unit Test programs.
+New file creation support is provided for Raincode-COBOL
 
 ## Changing the default file associations
 
-The command "Enforce extension via file.assocations" allows the default to be change from the "COBOL" language to "ACUCOBOL" or "COBOLIT".
+The command "Enforce extension via file.assocations" allows the default to be change from the "Raincode-COBOL".
 
 ## Tasks
 
@@ -149,7 +147,6 @@ Below is an example of *build* task that uses *mycobolproject.sln*.
             "presentation": {
                 "reveal": "always"
             },
-            "problemMatcher": "$mfcobol-msbuild"
         }
     ]
 }
@@ -256,7 +253,7 @@ The example below shows you how you can create a single task to compile one prog
 
 ### Task: Single file compile using ACUCOBOL-GT
 
-The example below shows you how you can create a single task to compile one program using the `ccbl32` command.
+The example below shows you how you can create a single task to compile one program using the `cobrc` command.
 
 ```json
 {
@@ -284,135 +281,6 @@ The example below shows you how you can create a single task to compile one prog
 }
 ```
 
-### Task: Breakdown of problem matchers
-
-| Product and Version                           | Tools                                                            | Problem matcher(s)                       |
-| --------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------- |
-| COBOL-IT                                      | *cobc*                                                           | $cobolit-cobc                            |
-| COBOL-IT                                      | *cobc* for errors/notes                                          | $cobolit-error-cobc + $cobolit-note-cobc |
-| ACUCOBOL-GT                                   | *ccbl* for errors/warnings                                       | $acucobol-ccbl + $acucobol-warning-ccbl  |
-| Micro Focus COBOL Net Express/Server Express  | *cob* or *cobol.exe* + ERRFORMAT"2"                              | $mfcobol-errformat2-netx-sx              |
-|                                               | *cob* or *cobol.exe* + ERRFORMAT"2" for errors in copybooks      | +mfcobol-errformat2-copybook-netx-sx     |
-|                                               | *cob* or *cobol.exe* + ERRFORMAT"3"                              | $mfcobol-errformat3-netx-sx              |
-|                                               | *cob* or *cobol.exe* + ERRFORMAT"3" for information              | +mfcobol-errformat3-info                 |
-| Micro Focus Visual COBOL/Enterprise Developer | *msbuild*                                                        | $mfcobol-msbuild                         |
-|                                               | *cob* or *cobol.exe* + ERRFORMAT"3"                              | $mfcobol-errformat3                      |
-|                                               | *cob* or *cobol.exe* + ERRFORMAT"3" / filename extract with PATH | $mfcobol-errformat3-basefn               |
-|                                               | *cob* or *cobol.exe* + ERRFORMAT"2"                              | $mfcobol-errformat2                      |
-|                                               | *cob* or *cobol.exe* + ERRFORMAT"2" for errors in copybooks      | $mfcobol-errformat2-copybook             |
-
-NOTE: Problem matchers can be stacked in your task definition.   It is recommended that any "-copybook", "-info", "-note" and similar problem matcher are included before problem matchers without this suffix.
-
-## Remote development using containers
-
-If your main development is Micro Focus Visual COBOL/Enterprise Developer you may have access to base images that provide the compiler and its tools.
-
-If you do, all that is required is another image that contains extra tools and a devcontainer.json to configure its use.
-
-The following ```Dockerfile``` is an example on how you can extend your existing base image with java configured, ant, git and lsb tools.
-
-This example uses the SLES 15.1 base images using Visual COBOL 6.0.
-
-You may need to tweak the ```FROM``` clause in the Dockerfile and if you use a different platform or product version, the ```zypper``` will also require a change too if a different platform is used (different commands eg: yum, microdnf etc..).
-
-Dockerfile:
-
-```dockerfile
-FROM microfocus/vcdevhub:sles15.1_6.0_x64_login
-
-USER root
-
-ENV JAVA_HOME=/usr/java/default
-ENV PATH=${JAVA_HOME}/bin:${PATH}
-
-ENV COBDIR=${MFPRODBASE}
-
-ENV PATH=${COBDIR}/bin:${PATH}
-ENV LD_LIBRARY_PATH=${COBDIR}/lib:${LD_LIBRARY_PATH}
-
-ENV ANT_HOME=/opt/microfocus/VisualCOBOL/remotedev/ant/apache-ant-1.9.9
-ENV PATH=${ANT_HOME}/bin:${PATH}
-
-RUN zypper --non-interactive install  --no-recommends lsb-release git
-```
-
-devcontainer.json:
-
-```jsonc
-{
- // See https://aka.ms/vscode-remote/devcontainer.json for format details.
- "name": "Visual COBOL",
-
- // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
- "dockerFile": "Dockerfile",
-
- // The optional 'runArgs' property can be used to specify additional runtime arguments.
- "runArgs": [
-  //  Uncomment the next line if you want to use Docker from the container. See the docker-in-docker definition for details.
-  // "-v","/var/run/docker.sock:/var/run/docker.sock",
-
-  // Uncomment the next two lines if you will use a ptrace-based debugger like C++, Go, and Rust
-  "--cap-add=SYS_PTRACE",
-  "--security-opt", "seccomp=unconfined"
- ],
-
- // Uncomment the next line if you want to publish any ports.
- // "appPort": [],
-
- // Uncomment the next line if you want to add in default container specific settings.json values
- // "settings":  { "workbench.colorTheme": "Quiet Light" },
-
- // Uncomment the next line to run commands after the container is created.
- // "postCreateCommand": "uname -a",
-
- // Add the IDs of any extensions you want installed in the array below.
- "extensions": [
-  "bitlang.cobol"
- ]
-}
-```
-
-### Workspace Setup
-
-Visual Studio Code workspaces are not "projects" but do allow you keep your source in one place.
-
-Things to consider:
-
-- If you have copybooks, you should change the ```coboleditor.copybookdirs``` settings to setup where the extension can find your copybooks
-- If use the *COPY* verb with this extension, you may also need to adjust the ```coboleditor.copybookexts``` settings (json array).
-- If you want the extension to understand the contents of your copybook before you access it, then turn on the ```coboleditor.parse_copybooks_for_references``` settings (json array) to allow the extension to look inside the copybook references
-
-### COBOL Linter
-
-The COBOL linter included with the extension performs two functions, the first function is to identify sections/paragraphs that are not used and the second is to apply any "house" standards.
-
-The section/parapgraph linter by default generates warning message but if you prefer the messages to be marked as information, you change the ```coboleditor.linter_mark_as_information``` boolean setting, for example:
-
- ```json
- "coboleditor.linter_mark_as_information": true
- ```
-
-The house standards are applied to fields in various sections, each section is named and a rule defined as a regular expression to enforce.
-
-For example to enforce all working-storage items must start with ws and local-storage ls, you can use:
-
-```json
-"coboleditor.linter_house_standards_rules": [
-        "file=.*",
-        "thread-local=ls.*",
-        "working-storage=ws.*",
-        "object-storage=.*",
-        "local-storage=.*",
-        "linkage=.*",
-        "communication=.*",
-        "report=.*",
-        "screen=.*",
-    ]
-```
-
-### Metadata caching
-
-By default the metadata caching is turned on and is stored in the current code workspace but it can be turned off via the ```coboleditor.maintain_metadata_cache``` setting.
 
 ## Pre-Processor support for "hidden" source code
 
@@ -599,14 +467,10 @@ The extension only enables features that allow basic editing, making it ideal fo
 
 - Online communities
   - [Facebook COBOL Group](https://www.facebook.com/groups/COBOLProgrammers/)
-  - [Micro Focus COBOL Community](https://community.microfocus.com/t5/Application-Modernization/ct-p/COBOL)
   - [Open Mainframe Project - COBOL Forum](https://community.openmainframeproject.org/c/cobol-technical-questions)
   - [Tek-Tips - COBOL General discussion](https://www.tek-tips.com/threadminder.cfm?pid=209)
 - Stack Overflow topics/tags:
-  - [Micro Focus COBOL, PL/I, REXX, JCL and CICS](https://stackoverflow.com/questions/tagged/microfocus)
-  - [ACUCOBOL-GT](https://stackoverflow.com/questions/tagged/acucobol-gt)
   - [COBOL](https://stackoverflow.com/questions/tagged/cobol)
-  - [COBOL.NET](https://stackoverflow.com/questions/tagged/cobol.net)
   - [CICS](https://stackoverflow.com/questions/tagged/cics)
 - [COBOL Programming Language Articles on Reddit](https://www.reddit.com/r/cobol/)
 - [Linkedin Learning COBOL Resources](https://www.linkedin.com/learning/topics/cobol)
@@ -623,6 +487,8 @@ The extension only enables features that allow basic editing, making it ideal fo
 - [ALT] + [SHIFT] + [M]: Toggle margins (overrides user/workspace settings)
 
 ## Contributors
+
+This Extention is base on the orignal [Bitlang project](https://github.com/spgennard/vscode_cobol) from Stephen Gennard 
 
 I would like to thank the follow contributors for providing patches, fixes, kind words of wisdom and enhancements.
 
