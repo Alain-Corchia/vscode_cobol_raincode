@@ -1,34 +1,25 @@
 {
   "name": "cobol",
-  "displayName": "COBOL",
+  "displayName": "Raincode COBOL",
   "description": "IntelliSense, highlighting, snippets, and code browsing for COBOL and more",
   "version": "9.3.2",
-  "publisher": "bitlang",
+  "publisher": "raincode",
   "keywords": [
-    "acucobol-gt",
-    "acucobol",
     "bms",
     "cics",
-    "cobol-it",
     "cobol",
-    "cobolit",
     "jcl",
-    "mfcobol",
-    "mfu",
     "multi-root ready",
-    "net express",
     "ocds",
     "pl/i",
-    "pli",
-    "server express",
-    "visual cobol"
+    "pli"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/spgennard/vscode_cobol"
+    "url": "https://github.com/Alain-Corchia/vscode_cobol_raincode"
   },
   "bugs": {
-    "email": "stephen@gennard.net"
+    "email": "alain@raincode.com"
   },
   "engines": {
     "vscode": "^1.76.0"
@@ -69,7 +60,7 @@
   "main": "./dist/extension",
   "browser": "./dist/web/extension-web.js",
   "license": "SEE LICENSE IN LICENSE",
-  "homepage": "https://github.com/spgennard/vscode_cobol",
+  "homepage": "https://github.com/Alain-Corchia/vscode_cobol_raincode",
   "author": {
     "name": "Stephen Gennard",
     "email": "stephen@gennard.net"
